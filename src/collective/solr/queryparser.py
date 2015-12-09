@@ -124,7 +124,7 @@ def quote(term, textfield=False):
                 stack.current.append(Whitespace())
             elif isinstance(stack.current, list):
                 # We have whitespace with no grouping, insert group
-                new = Group('(', ')')
+                new = Group('"', '"')
                 new.extend(stack.current)
                 new.append(Whitespace())
                 stack.current[:] = []
