@@ -210,7 +210,7 @@ class SolrMaintenanceTests(TestCase):
         self.assertEqual(counts['review_state'], 2)
 
     def testReindexKeepsBoostValues(self):
-        # Disable atomic updates, on order to test the index time boosting.
+        # Disable atomic updates, in order to test the index time boosting.
         config = getUtility(ISolrConnectionConfig)
         config.atomic_updates = False
 

@@ -3,7 +3,7 @@ Partial indexing documents (AtomicUpdates)
 
 This means whenever possible, only the necessary / specified attributes get updated in Solr, and more importantly, re-indexed by Plone's indexers.
 
-With collective.receipe.solr a new configuration is introduced, called `updateLog`. ``updateLog`` is enabled by default and allows atomic updates. In detail it adds a new field ``_version_`` to the schema and also adds "<updateLog />" to your solr config.
+With collective.recipe.solr a new configuration is introduced, called `updateLog`. ``updateLog`` is enabled by default and allows atomic updates. In detail it adds a new field ``_version_`` to the schema and also adds "<updateLog />" to your solr config.
 
 Further all your indexes configured in solr.cfg needs the stored:true attribute (Except the ``default`` field).
 

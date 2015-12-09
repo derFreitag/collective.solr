@@ -225,16 +225,18 @@ class SolrConnection:
             self._schema = self.getSchema()
         return self._schema
 
-    def add(self, boost_values=None, **fields):
+    def add(self, boost_values=None, atomic_updates=True, **fields):
         solr_config = queryUtility(ISolrConnectionConfig)
-        atomic_updates_enabled = getattr(solr_config, 'atomic_updates', True)
+        atomic_updates_enabled = getattr(solr_config,
+                                         'atomic_updates',
+                                         atomic_updates)
 
         schema = self.get_schema()
         uniqueKey = schema.get('uniqueKey', None)
         if uniqueKey is None:
             raise Exception("Could not get uniqueKey from Solr schema")
 
-        if uniqueKey not in fields.keys():
+        if uniqueKey not in fields:
             logger.warn("uniqueKey '%s' missing for item %s, skipping" %
                         (uniqueKey, fields))
             return

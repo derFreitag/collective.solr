@@ -263,7 +263,7 @@ class ISolrSchema(Interface):
     )
 
     atomic_updates = Bool(
-        title=_('label_atomic_update',
+        title=_('label_atomic_updates',
                 default=u'Enable atomic updates'),
         description=_(
             'help_atomic_updates',

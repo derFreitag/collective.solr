@@ -43,7 +43,11 @@ class TestSolr(TestCase):
 
         output = fakehttp(c, add_response)
         boost = {'': 2, 'id': 0.5, 'name': 5}
-        c.add(boost_values=boost, id='500', name='python test doc')
+        c.add(boost_values=boost,
+              atomic_updates=False, #  Force disabling atomic updates
+              id='500',
+              name='python test doc')
+
         res = c.flush()
         self.assertEqual(len(res), 1)   # one request was sent
         res = res[0]
