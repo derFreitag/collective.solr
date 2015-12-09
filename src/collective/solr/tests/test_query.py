@@ -56,6 +56,12 @@ class QuoteTests(TestCase):
         self.assertEqual(quote('foo and bar and [foobar at foo.com]*'),
                          '(foo and bar and \[foobar at foo.com\])')
 
+    def testQuotingSpaces(self):
+        self.assertEqual(
+            quote('Discussion Item'),
+            '"Discussion Item"',
+        )
+
     def testQuotingWildcardSearches(self):
         self.assertEqual(quote('te?t'), 'te?t')
         self.assertEqual(quote('test*'), 'test*')
