@@ -31,6 +31,17 @@ from zope.component import (
     queryUtility,
 )
 from zope.interface import Interface, implementer
+from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.CMFCatalogAware import CatalogAware
+from Products.CMFCore.CMFCatalogAware import CMFCatalogAware
+from Products.Archetypes.CatalogMultiplex import CatalogMultiplex
+try:   # pragma: no cover
+    from plone.app.content.interfaces import IIndexableObjectWrapper
+except ImportError:  # pragma: no cover
+    # Plone 5
+    from plone.indexer.interfaces import IIndexableObjectWrapper
+from plone.indexer.interfaces import IIndexableObject
+from plone.registry.interfaces import IRegistry
 
 logger = getLogger("collective.solr.indexer")
 
@@ -44,7 +55,12 @@ class BaseIndexable(object):
         self.context = context
 
     def __call__(self):
-        return isinstance(self.context, CMFCatalogAware)
+        # the check for CatalogAware is due to comments (from p.a.discussion)
+        # subclassing it instead of CMFCatalogAware, see
+        # https://github.com/plone/plone.app.discussion/issues/77
+        return isinstance(self.context, CatalogMultiplex) or \
+            isinstance(self.context, CMFCatalogAware) or \
+            isinstance(self.context, CatalogAware)
 
 
 def datehandler(value):

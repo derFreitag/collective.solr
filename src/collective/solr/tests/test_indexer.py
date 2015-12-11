@@ -2,6 +2,13 @@ from datetime import date, datetime
 from re import DOTALL, findall, search
 from threading import Thread
 from unittest import TestCase
+from re import search, findall, DOTALL
+from DateTime import DateTime
+from datetime import datetime
+from datetime import date
+from zope.interface import implements
+from Products.CMFCore.CMFCatalogAware import CatalogAware
+from Products.CMFCore.CMFCatalogAware import CMFCatalogAware
 
 from collective.solr.indexer import SolrIndexProcessor
 from collective.solr.indexer import logger as logger_indexer
@@ -20,6 +27,19 @@ from zope.interface import implementer
 @implementer(ICheckIndexable)
 class Foo(CMFCatalogAware):
     """dummy test object"""
+
+    def __init__(self, **kw):
+        for key, value in kw.items():
+            setattr(self, key, value)
+
+    def __call__(self):
+        return True
+
+
+class Comentish(CatalogAware):
+    """ dummy test object """
+
+    implements(ICheckIndexable)
 
     def __init__(self, **kw):
         for key, value in kw.items():
@@ -85,6 +105,17 @@ class QueueIndexerTests(TestCase):
             sortFields(str(output).encode("utf-8")),
             getData("add_request.txt").rstrip(b"\n"),
         )
+
+    def testIndexCatalogAwareObject(self):
+        """Check that not only CMFCatalogAware objects are indexed but also
+        CatalogAware ones (i.e comments).
+        """
+        response = getData('add_response.txt')
+        # fake add response
+        output = fakehttp(self.mngr.getConnection(), response)
+        # indexing sends data
+        self.proc.index(Comentish(id='500', name='python test doc'))
+        self.assertEqual(sortFields(str(output)), getData('add_request.txt'))
 
     def testIndexAccessorRaises(self):
         response = getData("add_response.txt")
