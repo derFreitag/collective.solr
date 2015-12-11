@@ -6,6 +6,7 @@ from datetime import datetime
 from datetime import date
 from zope.component import provideUtility
 from zope.interface import implements
+from Products.CMFCore.CMFCatalogAware import CatalogAware
 from Products.CMFCore.CMFCatalogAware import CMFCatalogAware
 
 from collective.solr.interfaces import ISolrConnectionConfig
@@ -21,6 +22,19 @@ from collective.solr.utils import prepareData
 
 class Foo(CMFCatalogAware):
 
+    """ dummy test object """
+
+    implements(ICheckIndexable)
+
+    def __init__(self, **kw):
+        for key, value in kw.items():
+            setattr(self, key, value)
+
+    def __call__(self):
+        return True
+
+
+class Comentish(CatalogAware):
     """ dummy test object """
 
     implements(ICheckIndexable)
@@ -89,6 +103,17 @@ class QueueIndexerTests(TestCase):
         output = fakehttp(self.mngr.getConnection(), response)
         # indexing sends data
         self.proc.index(Foo(id='500', name='python test doc'))
+        self.assertEqual(sortFields(str(output)), getData('add_request.txt'))
+
+    def testIndexCatalogAwareObject(self):
+        """Check that not only CMFCatalogAware objects are indexed but also
+        CatalogAware ones (i.e comments).
+        """
+        response = getData('add_response.txt')
+        # fake add response
+        output = fakehttp(self.mngr.getConnection(), response)
+        # indexing sends data
+        self.proc.index(Comentish(id='500', name='python test doc'))
         self.assertEqual(sortFields(str(output)), getData('add_request.txt'))
 
     def testIndexAccessorRaises(self):
