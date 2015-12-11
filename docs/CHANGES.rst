@@ -1,8 +1,8 @@
 Changelog
 =========
 
-4.1.1 (unreleased)
-------------------
+4.1.1.dev1 (2015-12-11)
+-----------------------
 
 - Add support for using different request handlers in search requests.
   [buchi]
