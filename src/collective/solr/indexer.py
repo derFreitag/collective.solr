@@ -18,6 +18,7 @@ from lxml import etree
 from plone.indexer.interfaces import IIndexableObject, IIndexableObjectWrapper
 from plone.registry.interfaces import IRegistry
 from Products.CMFCore.CMFCatalogAware import CMFCatalogAware
+from Products.CMFCore.CMFCatalogAware import CatalogAware
 from Products.CMFCore.utils import getToolByName
 from requests_toolbelt import MultipartEncoder
 from six.moves.urllib.parse import urlencode
@@ -44,7 +45,10 @@ class BaseIndexable(object):
         self.context = context
 
     def __call__(self):
-        return isinstance(self.context, CMFCatalogAware)
+        # the check for CatalogAware is due to comments (from p.a.discussion)
+        # subclassing it instead of CMFCatalogAware, see
+        # https://github.com/plone/plone.app.discussion/issues/77
+        return isinstance(self.context, (CMFCatalogAware, CatalogAware))
 
 
 def datehandler(value):
