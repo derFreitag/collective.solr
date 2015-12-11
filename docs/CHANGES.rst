@@ -37,6 +37,9 @@ Changelog
 - Unify all exceptions raised by collective.solr.
   [gforcada]
 
+- Index comments.
+  [gforcada]
+
 4.1.0 (2015-02-19)
 ------------------
 
