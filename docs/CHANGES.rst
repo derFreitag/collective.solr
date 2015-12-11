@@ -47,6 +47,9 @@ Note: This release requires you to to update your Solr config and do a full rein
 - Index comments.
   [gforcada]
 
+- Index comments.
+  [gforcada]
+
 4.1.0 (2015-02-19)
 ------------------
 
