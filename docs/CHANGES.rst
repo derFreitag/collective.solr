@@ -26,6 +26,8 @@ Changelog
 - Add zopectl.command for reindexing. Do not rely on positional arguments in _get_site.
   [tschorr]
 
+- Index comments
+  [gforcada]
 
 4.1.0 (2015-02-19)
 ------------------
