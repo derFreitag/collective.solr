@@ -22,6 +22,8 @@ from collective.solr.parser import SolrResponse
 from collective.solr.parser import unmarshallers
 from collective.solr.utils import findObjects
 from collective.solr.utils import prepareData
+from plone.app.discussion.interfaces import IComment
+
 
 logger = getLogger('collective.solr.maintenance')
 MAX_ROWS = 1000000000
@@ -144,7 +146,8 @@ class SolrMaintenanceView(BrowserView):
         for path, obj in findObjects(self.context):
             if ICheckIndexable(obj)():
 
-                if getOwnIndexMethod(obj, 'indexObject') is not None:
+                if getOwnIndexMethod(obj, 'indexObject') and \
+                        not IComment.providedBy(obj):
                     log('skipping indexing of %r via private method.\n' % obj)
                     continue
 
