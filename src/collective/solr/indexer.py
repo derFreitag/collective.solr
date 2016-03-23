@@ -362,7 +362,7 @@ class SolrIndexProcessor(object):
         schema = self.manager.getSchema()
         if schema is None:
             return {}, ()
-        if attributes is None:
+        if not attributes:
             attributes = list(schema.keys())
         obj = self.wrapObject(obj)
         data = {}
