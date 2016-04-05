@@ -9,6 +9,7 @@ from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
 import six
 from six.moves import range
+import logging
 
 
 if hasattr(str, "maketrans"):
@@ -20,6 +21,9 @@ else:
 def getConfig():
     registry = getUtility(IRegistry)
     return registry.forInterface(ISolrSchema, prefix="collective.solr")
+
+
+logger = logging.getLogger('collective.solr')
 
 
 def isActive():
@@ -196,8 +200,14 @@ def findObjects(origin):
         obj = traverse(path)
         yield path[cut:], obj
         if hasattr(aq_base(obj), "objectIds"):
-            for id in obj.objectIds():
-                paths.insert(idx + 1, path + "/" + id)
+            from zope.component.interfaces import ComponentLookupError
+            try:
+                for id in obj.objectIds():
+                    paths.insert(idx + 1, path + "/" + id)
+            except ComponentLookupError:
+                logger.error(
+                    'Can not list sub-objects of object {0}'.format(path)
+                )
 
         try:
             conversation = IConversation(obj)
