@@ -8,6 +8,11 @@ from plone.registry.interfaces import IRegistry
 from six.moves import range
 from unidecode import unidecode
 from zope.component import getUtility
+import logging
+
+
+logger = logging.getLogger('collective.solr')
+
 
 if hasattr(str, "maketrans"):
     maketrans = str.maketrans
@@ -207,8 +212,14 @@ def findObjects(origin):
         obj = traverse(path)
         yield path[cut:], obj
         if hasattr(aq_base(obj), "objectIds"):
-            for id in obj.objectIds():
-                paths.insert(idx + 1, path + "/" + id)
+            from zope.interface.interfaces import ComponentLookupError
+            try:
+                for id in obj.objectIds():
+                    paths.insert(idx + 1, path + "/" + id)
+            except ComponentLookupError:
+                logger.error(
+                    'Can not list sub-objects of object {0}'.format(path)
+                )
 
         try:
             conversation = IConversation(obj)
