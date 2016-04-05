@@ -9,6 +9,11 @@ from zope.component import queryUtility
 
 from collective.solr.interfaces import ISolrConnectionConfig
 
+import logging
+
+
+logger = logging.getLogger('collective.solr')
+
 
 def isActive():
     """ indicate if the solr connection should/can be used """
@@ -166,8 +171,14 @@ def findObjects(origin):
         obj = traverse(path)
         yield path[cut:], obj
         if hasattr(aq_base(obj), 'objectIds'):
-            for id in obj.objectIds():
-                paths.insert(idx + 1, path + '/' + id)
+            from zope.component.interfaces import ComponentLookupError
+            try:
+                for id in obj.objectIds():
+                    paths.insert(idx + 1, path + '/' + id)
+            except ComponentLookupError:
+                logger.error(
+                    'Can not list sub-objects of object {0}'.format(path)
+                )
 
         try:
             conversation = IConversation(obj)
