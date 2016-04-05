@@ -19,6 +19,11 @@ def getConfig():
     registry = getUtility(IRegistry)
     return registry.forInterface(ISolrSchema, prefix="collective.solr")
 
+import logging
+
+
+logger = logging.getLogger('collective.solr')
+
 
 def isActive():
     """indicate if the solr connection should/can be used"""
@@ -208,9 +213,24 @@ def findObjects(origin):
     for idx, path in enumerate(paths):
         obj = traverse(path)
         yield path[cut:], obj
-        if hasattr(aq_base(obj), "objectIds"):
-            for id in obj.objectIds():
-                paths.insert(idx + 1, path + "/" + id)
+        if hasattr(aq_base(obj), 'objectIds'):
+            from zope.component.interfaces import ComponentLookupError
+            try:
+                for id in obj.objectIds():
+                    paths.insert(idx + 1, path + '/' + id)
+            except ComponentLookupError:
+                logger.error(
+                    'Can not list sub-objects of object {0}'.format(path)
+                )
+
+        try:
+            conversation = IConversation(obj)
+        except TypeError:
+            continue
+
+        for comment in conversation.getComments():
+            comment_path = '/'.join(comment.getPhysicalPath()[-2:])
+            paths.insert(idx + 1, path + '/' + comment_path)
 
 
 def padResults(results, start=0, **kw):
