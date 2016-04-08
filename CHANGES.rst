@@ -1,8 +1,8 @@
 Changelog
 =========
 
-4.1.1 (unreleased)
-------------------
+4.1.1.dev3 (2016-04-08)
+-----------------------
 
 Note: This release requires you to to update your Solr config and do a full reindex.
 
