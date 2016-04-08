@@ -13,6 +13,7 @@ from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.testing import Layer
 from plone.testing.z2 import installProduct
+from plone.testing.z2 import uninstallProduct
 from time import sleep
 from zope.configuration import xmlconfig
 
@@ -146,6 +147,11 @@ class CollectiveSolrLayer(PloneSandboxLayer):
         solr_settings.setPort(8983)
         solr_settings.setBase('/solr')
         self.solr_layer.tearDown()
+
+    def tearDownZope(self, app):
+        uninstallProduct(app, 'collective.indexing')
+        from collective.indexing.monkey import unpatch
+        unpatch()
 
 
 class LegacyCollectiveSolrLayer(CollectiveSolrLayer):
