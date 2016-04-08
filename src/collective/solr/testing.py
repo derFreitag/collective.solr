@@ -25,6 +25,7 @@ from plone.app.testing import login
 from plone.registry.interfaces import IRegistry
 from plone.testing import Layer
 from plone.testing import z2
+from plone.testing.z2 import uninstallProduct
 from plone.api.portal import set_registry_record
 from zope.interface import implementer
 from zope.component import provideUtility
@@ -164,6 +165,11 @@ class CollectiveSolrLayer(PloneSandboxLayer):
         set_registry_record("collective.solr.port", 8983)
         set_registry_record("collective.solr.base", u"/solr/plone")
         self.solr_layer.tearDown()
+
+    def tearDownZope(self, app):
+        uninstallProduct(app, 'collective.indexing')
+        from collective.indexing.monkey import unpatch
+        unpatch()
 
 
 class LegacyCollectiveSolrLayer(CollectiveSolrLayer):
