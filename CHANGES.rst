@@ -44,6 +44,20 @@ Note: This release requires you to to update your Solr config and do a full rein
   This allows to get results on searches while reindexing is taking place.
   [gforcada]
 
+- Remove patches on testing layer tear down.
+  [gforcada]
+
+- Avoid an error when reindexing.
+  [gforcada]
+
+- Index comments.
+  [gforcada]
+
+- Fix field-list export.
+  [gforcada]
+
+- Use implicit python truthiness.
+  [gforcada]
 
 4.1.0 (2015-02-19)
 ------------------
