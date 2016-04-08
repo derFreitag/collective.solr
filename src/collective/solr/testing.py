@@ -1,6 +1,30 @@
+# -*- coding: utf-8 -*-
 import os
 import subprocess
 import sys
+from Products.CMFCore.utils import getToolByName
+from collective.solr.utils import activate
+from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
+from plone.app.testing import FunctionalTesting
+from plone.app.testing import IntegrationTesting
+try:  # pragma: no cover
+    from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE as PLONE_FIXTURE  # noqa
+    HAS_PAC = True
+except ImportError:  # pragma: no cover
+    from plone.app.testing.bbb import PTC_FIXTURE as PLONE_FIXTURE
+    HAS_PAC = False
+from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import TEST_USER_NAME
+from plone.app.testing import applyProfile
+from plone.app.testing import login
+from plone.registry.interfaces import IRegistry
+from plone.testing import Layer
+from plone.testing import z2
+from plone.testing.z2 import installProduct
+from plone.testing.z2 import uninstallProduct
+from plone.api.portal import set_registry_record
+from zope.interface import implementer
+from zope.component import provideUtility
 from time import sleep
 
 import six
@@ -137,6 +161,11 @@ class CollectiveSolrLayer(PloneSandboxLayer):
         set_registry_record("collective.solr.port", 8983)
         set_registry_record("collective.solr.base", "/solr/plone")
         self.solr_layer.tearDown()
+
+    def tearDownZope(self, app):
+        uninstallProduct(app, 'collective.indexing')
+        from collective.indexing.monkey import unpatch
+        unpatch()
 
 
 class LegacyCollectiveSolrLayer(CollectiveSolrLayer):
