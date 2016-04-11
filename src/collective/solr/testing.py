@@ -50,6 +50,8 @@ class SolrLayer(Layer):
         solr_base="/solr/plone",
     ):
         super(SolrLayer, self).__init__(bases, name, module)
+        if 'SOLR_PORT' in os.environ:
+            solr_port = os.environ['SOLR_PORT']
         self.solr_host = solr_host
         self.solr_port = solr_port
         self.solr_base = solr_base
@@ -98,6 +100,8 @@ class CollectiveSolrLayer(PloneSandboxLayer):
         solr_active=False,
     ):
         super(PloneSandboxLayer, self).__init__(bases, name, module)
+        if 'SOLR_PORT' in os.environ:
+            solr_port = os.environ['SOLR_PORT']
         self.solr_active = solr_active
         self.solr_host = solr_host
         self.solr_port = solr_port
@@ -130,7 +134,7 @@ class CollectiveSolrLayer(PloneSandboxLayer):
         self.solr_layer.setUp()
         applyProfile(portal, "collective.solr:default")
         set_registry_record("collective.solr.active", self.solr_active)
-        set_registry_record("collective.solr.port", self.solr_port)
+        set_registry_record("collective.solr.port", int(self.solr_port))
         set_registry_record("collective.solr.base", self.solr_base)
 
     def tearDownPloneSite(self, portal):
