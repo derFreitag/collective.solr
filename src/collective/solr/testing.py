@@ -55,6 +55,8 @@ class SolrLayer(Layer):
             solr_port=8983,
             solr_base='/solr/plone'):
         super(SolrLayer, self).__init__(bases, name, module)
+        if 'SOLR_PORT' in os.environ:
+            solr_port = os.environ['SOLR_PORT']
         self.solr_host = solr_host
         self.solr_port = solr_port
         self.solr_base = solr_base
