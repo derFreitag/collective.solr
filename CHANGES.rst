@@ -4,8 +4,8 @@ Changelog
 4.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Get the port from an environment variable (for testing).
+  [gforcada]
 
 4.1.1.dev3 (2016-04-08)
 -----------------------
