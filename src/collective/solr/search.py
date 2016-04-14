@@ -234,10 +234,10 @@ class Search(object):
                 if value and value[0] not in "+-":
                     value = "+%s" % value
             else:
-                if name[0] not in "+-":
-                    value = "+%s:%s" % (name, value)
-                else:
-                    value = "%s:%s" % (name, value)
+                try:
+                    value = '+%s:%s' % (name, value)
+                except UnicodeDecodeError:
+                    value = '+%s:%s' % (name, value.decode('utf-8'))
             query[name] = value
         logger.debug('built query "%s"', query)
 
