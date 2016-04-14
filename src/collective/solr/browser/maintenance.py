@@ -401,3 +401,13 @@ class SolrMaintenanceView(BrowserView):
         msg = finished_msg % (deleted, reindexed)
         log(msg)
         logger.info(msg)
+
+    def silent_clear_and_reindex(self):
+        import types
+
+        def silent(self, use_std_log=False):
+            return lambda x:x
+
+        self.mklog = types.MethodType(silent, self)
+        self.clear()
+        self.reindex()
