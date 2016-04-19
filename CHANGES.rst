@@ -4,8 +4,12 @@ Changelog
 4.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Play well with plone.app.querystring (encoding errors).
+  [gforcada]
 
+- Provide a method to clear and reindex without showing any output,
+  really useful for testing.
+  [gforcada]
 
 4.1.1.dev4 (2016-04-13)
 -----------------------
