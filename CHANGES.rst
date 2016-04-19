@@ -1,8 +1,8 @@
 Changelog
 =========
 
-4.1.2 (unreleased)
-------------------
+4.1.1.dev5 (2016-04-19)
+-----------------------
 
 - Play well with plone.app.querystring (encoding errors).
   [gforcada]
