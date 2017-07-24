@@ -18,8 +18,27 @@ Bugfixes:
   [timo]
 
 - Fix tests to work with latest collective.indexing.
+- Use implicit python truthiness.
   [gforcada]
 
+- Index comments.
+  [gforcada]
+
+- Avoid an error when reindexing.
+  [gforcada]
+
+- Remove patches on testing layer tear down.
+  [gforcada]
+
+- Get the port from an environment variable (for testing).
+  [gforcada]
+
+- Play well with plone.app.querystring (encoding errors).
+  [gforcada]
+
+- Provide a method to clear and reindex without showing any output,
+  really useful for testing.
+  [gforcada]
 
 6.0a2 (2017-07-17)
 ------------------
@@ -64,7 +83,6 @@ Bugfixes:
 - Updated german translation
   [tomgross]
 
-
 6.0a1 (2016-10-11)
 ------------------
 
@@ -80,7 +98,6 @@ Bugfixes:
 - Add ignore_exceptions option for Solr reindex. This option is true by
   default when running solr_reindex from the command line.
   [tschorr]
-
 
 5.0.3 (2016-06-05)
 ------------------
