@@ -9,6 +9,33 @@ Changelog
 
   [sauzher]
 
+- Use implicit python truthiness.
+  [gforcada]
+
+- Index comments.
+  [gforcada]
+
+- Avoid an error when reindexing.
+  [gforcada]
+
+- Remove patches on testing layer tear down.
+  [gforcada]
+
+- Get the port from an environment variable (for testing).
+  [gforcada]
+
+- Play well with plone.app.querystring (encoding errors).
+  [gforcada]
+
+- Provide a method to clear and reindex without showing any output,
+  really useful for testing.
+  [gforcada]
+
+- Make Archetypes optional.
+  [gforcada]
+
+- Handle Solr PointField fields.
+  [gforcada]
 
 7.0.0a1 (unreleased)
 --------------------
