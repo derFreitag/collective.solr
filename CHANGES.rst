@@ -3,9 +3,37 @@ Changelog
 
 8.0.0a2 (unreleased)
 --------------------
+- Use implicit python truthiness.
+  [gforcada]
 
-- Nothing changed yet.
+- Index comments.
+  [gforcada]
 
+- Avoid an error when reindexing.
+  [gforcada]
+
+- Remove patches on testing layer tear down.
+  [gforcada]
+
+- Get the port from an environment variable (for testing).
+  [gforcada]
+
+- Play well with plone.app.querystring (encoding errors).
+  [gforcada]
+
+- Provide a method to clear and reindex without showing any output,
+  really useful for testing.
+  [gforcada]
+
+- Make Archetypes optional.
+  [gforcada]
+
+- Handle Solr PointField fields.
+  [gforcada]
+
+- Fix rounding problem when formatting dates.
+  See upstream report https://github.com/collective/collective.solr/issues/230
+  [gforcada]
 
 8.0.0a1 (2019-08-22)
 --------------------
