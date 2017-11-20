@@ -1,6 +1,12 @@
 Changelog
 =========
 
+6.0a2.post1 (unreleased)
+------------------------
+
+- Nothing changed yet.
+
+
 6.0a2.post0 (2017-11-20)
 ------------------------
 
