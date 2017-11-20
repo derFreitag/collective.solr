@@ -3,6 +3,8 @@ Changelog
 
 9.4.1 (unreleased)
 ------------------
+6.0a2.post0 (2017-11-20)
+------------------------
 
 - Update CI to get it working again [gforcada]
 
