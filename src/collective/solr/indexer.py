@@ -13,7 +13,12 @@ from ZODB.POSException import ConflictError
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.CMFCatalogAware import CatalogAware
 from Products.CMFCore.CMFCatalogAware import CMFCatalogAware
-from Products.Archetypes.CatalogMultiplex import CatalogMultiplex
+try:
+    from Products.Archetypes.CatalogMultiplex import CatalogMultiplex
+    HAS_ARCHETYPES = True
+except ImportError:
+    HAS_ARCHETYPES = False
+    CatalogMultiplex = object()
 try:   # pragma: no cover
     from plone.app.content.interfaces import IIndexableObjectWrapper
 except ImportError:  # pragma: no cover
@@ -49,7 +54,7 @@ class BaseIndexable(object):
         # the check for CatalogAware is due to comments (from p.a.discussion)
         # subclassing it instead of CMFCatalogAware, see
         # https://github.com/plone/plone.app.discussion/issues/77
-        return isinstance(self.context, CatalogMultiplex) or \
+        return HAS_ARCHETYPES and isinstance(self.context, CatalogMultiplex) or \
             isinstance(self.context, CMFCatalogAware) or \
             isinstance(self.context, CatalogAware)
 

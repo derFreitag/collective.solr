@@ -43,9 +43,16 @@ from zExceptions import Unauthorized
 from zope.component import getUtility, queryAdapter
 from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory
-from Products.Archetypes.interfaces import IBaseObject
 
 import unittest
+
+try:
+    from Products.Archetypes.interfaces import IBaseObject
+    HAS_ARCHETYPES = True
+except ImportError:
+    IBaseObject = object()
+    HAS_ARCHETYPES = False
+
 
 DEFAULT_OBJS = [
     {'Title': 'News', 'getId': 'aggregator', 'Type': 'Collection',
@@ -1470,6 +1477,7 @@ class SolrServerTests(TestCase):
         # NewsFolder was removed from index too
         self.assertEqual(len(resp), 0)
 
+    @unittest.skipUnless(HAS_ARCHETYPES, 'No archetypes, no test')
     def testCleanup_uid(self):
         self.maintenance.reindex()
         # low level delete to force ascync index and
