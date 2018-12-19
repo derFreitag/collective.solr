@@ -102,6 +102,9 @@ handlers = {
     'solr.TrieDateField': datehandler,
     'solr.TrieIntField': inthandler,
     'solr.IntField': inthandler,
+    'solr.LongPointField': inthandler,
+    'solr.DatePointField': datehandler,
+    'solr.IntPointField': inthandler,
 }
 
 
