@@ -112,6 +112,7 @@ handlers = {
     "solr.TrieIntField": inthandler,
     "solr.IntField": inthandler,
     "solr.IntPointField": inthandler,
+    'solr.LongPointField': inthandler,
 }
 
 
