@@ -1,8 +1,8 @@
 Changelog
 =========
 
-7.0.0a2 (unreleased)
---------------------
+7.0.0a1.post0 (2019-01-25)
+--------------------------
 
 - fix full reindex failure in case of malformed content (xml parsing)
 - Implemented delay on searchform to avoid to start a search for every single key stroke
