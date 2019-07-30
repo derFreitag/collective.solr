@@ -4,8 +4,9 @@ Changelog
 7.0.0a1.post1 (unreleased)
 --------------------------
 
-- Nothing changed yet.
-
+- Fix rounding problem when formatting dates.
+  See upstream report https://github.com/collective/collective.solr/issues/230
+  [gforcada]
 
 7.0.0a1.post0 (2019-01-25)
 --------------------------
