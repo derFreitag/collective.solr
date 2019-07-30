@@ -73,13 +73,25 @@ def datehandler(value):
 
     if isinstance(value, DateTime):
         v = value.toZone("UTC")
-        value = "%04d-%02d-%02dT%02d:%02d:%06.3fZ" % (
+        seconds = v.second()
+        if seconds > 59.5:
+            # handle seconds taking into account rounding problems
+            # the problem is if seconds are something like 59.999907
+            # considering only the first 3 decimal positions ends up rounding
+            # the value to 60.000, if we consider enough numbers, the rounding
+            # does not happen
+            # the string has to be cut eventually though
+            seconds = '%010.8f' % seconds
+            seconds = seconds[:6]
+        else:
+            seconds = '%06.3f' % seconds
+        value = "%04d-%02d-%02dT%02d:%02d:%sZ" % (
             v.year(),
             v.month(),
             v.day(),
             v.hour(),
             v.minute(),
-            v.second(),
+            seconds,
         )
     elif isinstance(value, datetime):
         # Convert a timezone aware timetuple to a non timezone aware time
