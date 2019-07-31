@@ -111,7 +111,8 @@ class QueueIndexerTests(TestCase):
         output = fakehttp(self.mngr.getConnection(), response)
         # indexing sends data
         self.proc.index(Comentish(id='500', name='python test doc'))
-        self.assertEqual(sortFields(str(output)), getData('add_request.txt'))
+        self.assertEqual(sortFields(str(output)),
+                         getData('add_request.txt').rstrip('\n'))
 
     def testIndexAccessorRaises(self):
         response = getData("add_response.txt")
