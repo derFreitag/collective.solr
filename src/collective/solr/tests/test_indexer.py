@@ -4,6 +4,7 @@ from threading import Thread
 from unittest import TestCase
 
 from collective.solr.indexer import SolrIndexProcessor
+from collective.solr.indexer import datehandler
 from collective.solr.indexer import logger as logger_indexer
 from collective.solr.interfaces import ICheckIndexable
 from collective.solr.manager import SolrConnectionManager
@@ -544,3 +545,11 @@ class ThreadedConnectionTests(TestCase):
         self.assertIsInstance(conn, SolrConnection)
         self.assertEqual(log[1], proc)  # processors should be the same...
         self.assertNotEqual(log[2], conn)  # but not the connections
+
+
+class DateHandlerTestCase(TestCase):
+    def test_rounding(self):
+        self.assertEqual(
+            datehandler(DateTime('2018/02/10 22:23:59.999907 GMT+1')),
+            '2018-02-10T21:23:59.999Z',
+        )
