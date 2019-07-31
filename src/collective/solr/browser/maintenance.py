@@ -451,7 +451,7 @@ class SolrMaintenanceView(BrowserView):
         import types
 
         def silent(self, use_std_log=False):
-            return lambda x:x
+            return lambda x: x
 
         self.mklog = types.MethodType(silent, self)
         self.clear()
