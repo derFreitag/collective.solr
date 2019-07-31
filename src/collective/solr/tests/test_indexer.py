@@ -441,7 +441,7 @@ class ThreadedConnectionTests(TestCase):
 
 class DateHandlerTestCase(TestCase):
     def test_rounding(self):
-        self.assertEqual(datehandler(DateTime('2018/02/10 22:23:59.999907 GMT+1')),
-            '2018-02-10T21:23:59.999Z'
+        self.assertEqual(
+            datehandler(DateTime('2018/02/10 22:23:59.999907 GMT+1')),
+            '2018-02-10T21:23:59.999Z',
         )
-
