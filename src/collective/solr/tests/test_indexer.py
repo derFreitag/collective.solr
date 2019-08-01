@@ -11,6 +11,7 @@ from Products.CMFCore.CMFCatalogAware import CMFCatalogAware
 from collective.solr.interfaces import ICheckIndexable
 from collective.solr.manager import SolrConnectionManager
 from collective.solr.indexer import SolrIndexProcessor
+from collective.solr.indexer import datehandler
 from collective.solr.indexer import logger as logger_indexer
 from collective.solr.tests.utils import getData, fakehttp, fakemore
 from collective.solr.testing import COLLECTIVE_SOLR_MOCK_REGISTRY_FIXTURE
@@ -117,7 +118,8 @@ class QueueIndexerTests(TestCase):
         output = fakehttp(self.mngr.getConnection(), response)
         # indexing sends data
         self.proc.index(Comentish(id='500', name='python test doc'))
-        self.assertEqual(sortFields(str(output)), getData('add_request.txt'))
+        self.assertEqual(sortFields(str(output)),
+                         getData('add_request.txt').rstrip('\n'))
 
     def testIndexAccessorRaises(self):
         response = getData('add_response.txt')
@@ -436,3 +438,11 @@ class ThreadedConnectionTests(TestCase):
         self.failUnless(isinstance(conn, SolrConnection))
         self.assertEqual(log[1], proc)      # processors should be the same...
         self.assertNotEqual(log[2], conn)   # but not the connections
+
+
+class DateHandlerTestCase(TestCase):
+    def test_rounding(self):
+        self.assertEqual(
+            datehandler(DateTime('2018/02/10 22:23:59.999907 GMT+1')),
+            '2018-02-10T21:23:59.999Z',
+        )
