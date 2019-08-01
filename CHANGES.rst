@@ -1,7 +1,7 @@
 Changelog
 =========
 
-7.0.0a1.post1 (unreleased)
+7.0.0a1.post1 (2019-08-01)
 --------------------------
 
 - Fix rounding problem when formatting dates.
