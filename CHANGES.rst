@@ -1,8 +1,8 @@
 Changelog
 =========
 
-8.0.0a2 (unreleased)
---------------------
+8.0.0a1.post0 (2019-11-07)
+--------------------------
 - Use implicit python truthiness.
   [gforcada]
 
