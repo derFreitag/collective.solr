@@ -1,6 +1,12 @@
 Changelog
 =========
 
+8.0.0a1.post2 (unreleased)
+--------------------------
+
+- Nothing changed yet.
+
+
 8.0.0a1.post1 (2019-11-15)
 --------------------------
 - Use implicit python truthiness.
