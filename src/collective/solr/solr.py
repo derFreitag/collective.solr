@@ -181,7 +181,10 @@ class SolrConnection:
 
     def escapeVal(self, val):
         if not isinstance(val, six.text_type):
-            val = six.text_type(val)
+            try:
+                val = six.text_type(val)
+            except UnicodeDecodeError:
+                val = val.decode('utf-8')
         if six.PY2:
             val = val.encode("utf-8")
         escaped_val = escape(val.translate(translation_map))
