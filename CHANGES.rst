@@ -1,7 +1,7 @@
 Changelog
 =========
 
-8.0.0a1.post2 (unreleased)
+8.0.0a1.post2 (2019-11-18)
 --------------------------
 
 - Fix another `UnicodeDecodeError` error when handling tags with umlauts.
