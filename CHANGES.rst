@@ -4,7 +4,8 @@ Changelog
 8.0.0a1.post2 (unreleased)
 --------------------------
 
-- Nothing changed yet.
+- Fix another `UnicodeDecodeError` error when handling tags with umlauts.
+  [gforcada]
 
 
 8.0.0a1.post1 (2019-11-15)
