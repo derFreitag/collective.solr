@@ -7,6 +7,36 @@ Changelog
 - Plone 5.2.2 compatibility.
   [timo]
 
+- Use implicit python truthiness.
+  [gforcada]
+
+- Index comments.
+  [gforcada]
+
+- Avoid an error when reindexing.
+  [gforcada]
+
+- Get the port from an environment variable (for testing).
+  [gforcada]
+
+- Play well with plone.app.querystring (encoding errors).
+  [gforcada]
+
+- Provide a method to clear and reindex without showing any output,
+  really useful for testing.
+  [gforcada]
+
+- Make Archetypes optional.
+  [gforcada]
+
+- Handle Solr PointField fields.
+  [gforcada]
+
+- Fix another `UnicodeDecodeError` error when handling tags with umlauts.
+  [gforcada]
+
+- Fix layer teardown exception.
+  [gforcada]
 
 8.0.0b1 (2020-06-12)
 --------------------
