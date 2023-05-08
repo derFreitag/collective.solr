@@ -134,6 +134,8 @@ class CollectiveSolrLayer(PloneSandboxLayer):
         set_registry_record("collective.solr.active", self.solr_active)
         set_registry_record("collective.solr.port", self.solr_port)
         set_registry_record("collective.solr.base", self.solr_base)
+        set_registry_record('collective.solr.auto_commit', True)
+        set_registry_record('collective.solr.commit_within', 0)
 
     def tearDownPloneSite(self, portal):
         set_registry_record("collective.solr.active", False)
