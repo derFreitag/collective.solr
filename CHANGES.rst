@@ -1,8 +1,8 @@
 Changelog
 =========
 
-8.4.3 (unreleased)
-------------------
+8.4.2.post1 (2024-02-14)
+------------------------
 
 - Use implicit python truthiness.
   [gforcada]
