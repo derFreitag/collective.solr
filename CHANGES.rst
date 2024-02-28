@@ -4,8 +4,8 @@ Changelog
 9.1.3.post2 (unreleased)
 ------------------------
 
-- Nothing changed yet.
-
+- Fix test layers tear down traceback, when using
+  c.solr FIXTURE on other distributions.
 
 9.1.3.post1 (2024-02-15)
 ------------------------
