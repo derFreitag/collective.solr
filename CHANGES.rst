@@ -1,7 +1,7 @@
 Changelog
 =========
 
-9.1.3.post2 (unreleased)
+9.1.3.post2 (2024-02-28)
 ------------------------
 
 - Fix test layers tear down traceback, when using
