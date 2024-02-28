@@ -87,8 +87,6 @@ SOLR_FIXTURE = SolrLayer()
 
 class CollectiveSolrLayer(PloneSandboxLayer):
 
-    defaultBases = (PLONE_FIXTURE,)
-
     def __init__(
         self,
         bases=None,
