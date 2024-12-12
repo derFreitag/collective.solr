@@ -1,6 +1,43 @@
 Changelog
 =========
 
+10.1.2 (unreleased)
+-------------------
+
+- Fix test layers tear down traceback, when using
+  c.solr FIXTURE on other distributions.
+
+- Use implicit python truthiness.
+  [gforcada]
+
+- Index comments.
+  [gforcada]
+
+- Avoid an error when reindexing.
+  [gforcada]
+
+- Get the port from an environment variable (for testing).
+  [gforcada]
+
+- Play well with plone.app.querystring (encoding errors).
+  [gforcada]
+
+- Provide a method to clear and reindex without showing any output,
+  really useful for testing.
+  [gforcada]
+
+- Make Archetypes optional.
+  [gforcada]
+
+- Handle Solr PointField fields.
+  [gforcada]
+
+- Fix another `UnicodeDecodeError` error when handling tags with umlauts.
+  [gforcada]
+
+- Fix layer teardown exception.
+  [gforcada]
+
 10.1.1 (2026-03-11)
 -------------------
 
