@@ -1,8 +1,8 @@
 Changelog
 =========
 
-10.1.1 (unreleased)
--------------------
+10.1.0.post0 (2026-02-10)
+-------------------------
 
 - Fix test layers tear down traceback, when using
   c.solr FIXTURE on other distributions.
