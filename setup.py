@@ -2,7 +2,7 @@ import sys
 
 from setuptools import setup
 
-version = "10.1.1.post1"
+version = "10.1.1.post2.dev0"
 
 assert sys.version_info >= (
     3,
