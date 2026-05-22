@@ -4,8 +4,8 @@ Changelog
 10.1.1.post1 (unreleased)
 -------------------------
 
-- Nothing changed yet.
-
+- Replace ``pkg_resources`` namespace with PEP 420 native namespace.
+  Support only Plone 6.2 and Python 3.10+.
 
 10.1.1.post0 (2026-05-19)
 -------------------------
