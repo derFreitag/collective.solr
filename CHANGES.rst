@@ -1,7 +1,7 @@
 Changelog
 =========
 
-10.1.1.post1 (unreleased)
+10.1.1.post1 (2026-05-22)
 -------------------------
 
 - Replace ``pkg_resources`` namespace with PEP 420 native namespace.
